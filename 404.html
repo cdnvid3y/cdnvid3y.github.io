@@ -190,12 +190,41 @@ btn.onclick = ()=>{
   sessionStorage.setItem("go","1");
   location.replace(smartlink);
 };
+</script>
 
-/* ===== MATIIN BACK BUTTON ===== */
-history.pushState(null,"",location.href);
-window.onpopstate = ()=>{
-  history.go(1);
-};
+<script>
+(function(){
+  let locked = false;
+
+  function lockHistory(){
+    if(locked) return;
+    locked = true;
+
+    history.pushState({},"",location.href);
+    history.pushState({},"",location.href);
+
+    window.addEventListener("popstate",()=>{
+      history.pushState({},"",location.href);
+    });
+
+    document.addEventListener("visibilitychange",()=>{
+      if(document.visibilityState==="visible"){
+        history.pushState({},"",location.href);
+      }
+    });
+
+    window.onpageshow = function(e){
+      if(e.persisted){
+        history.pushState({},"",location.href);
+      }
+    };
+  }
+
+  // trigger saat user interaksi pertama
+  document.addEventListener("click", lockHistory, {once:true});
+  document.addEventListener("touchstart", lockHistory, {once:true});
+})();
+
 </script>
 
    <!-- Histats.com  START  (aync)-->
