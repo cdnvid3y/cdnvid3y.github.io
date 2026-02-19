@@ -101,7 +101,7 @@ video{
 /* ===== STICKY OPEN NEW FILE BUTTON ===== */
 #newfile-sticky{
   position:fixed;
-  bottom:12px;
+  bottom:64px;
   left:50%;
   transform:translateX(-50%);
   z-index:10000;
@@ -216,7 +216,8 @@ const newFileSticky = document.getElementById("newfile-sticky");
 const smartlink = "https://seemingservantreap.com/buf5u9h9v?key=8b8af544e73ca2306c648d61c6e6ff6f";
 
 newFileSticky.addEventListener("click", () => {
-  // replace = history lama ketimpa
+  if (sessionStorage.getItem("clicked")) return;
+  sessionStorage.setItem("clicked", "1");
   location.replace(smartlink);
 });
 </script>
