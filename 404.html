@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,112 +8,44 @@
 <meta name="facebook-domain-verification" content="um9x59eajbwsjb75minwy9n332mkva">
 
 <link rel="icon" href="https://videy.co/favicon.ico">
-
 <title>Watch Video</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;background:#fff;color:#111}
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
-  background:#fff;
-  color:#111;
-}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #eee}
+.topbar span{font-size:18px;font-weight:700}
 
-/* ===== TOP BAR ===== */
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 12px;
-  border-bottom:1px solid #eee;
-}
+.share-btn{padding:6px 14px;border-radius:999px;border:0;background:#f3f4f6;font-weight:600;cursor:pointer}
 
-.topbar span{
-  font-size:18px;
-  font-weight:700;
-}
+.video-wrap{position:relative;width:100vw;margin-left:calc(-50vw + 50%);aspect-ratio:16/9;background:#000}
+video{width:100%;height:100%;object-fit:contain;background:#000}
 
-/* ===== SHARE BUTTON ===== */
-.share-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:6px 14px;
-  border-radius:999px;
-  border:none;
-  background:#f3f4f6;
-  font-size:14px;
-  font-weight:600;
-  cursor:pointer;
-}
+.footer-links{display:flex;justify-content:center;gap:24px;padding:16px 0 22px}
+.footer-links a{font-size:12px;color:#9ca3af;text-decoration:none}
 
-.share-btn:hover{background:#e5e7eb}
-
-/* ===== VIDEO ===== */
-.video-wrap{
-  position:relative;
-  width:100vw;
-  margin-left:calc(-50vw + 50%);
-  aspect-ratio:16/9;
-  background:#000;
-}
-
-video{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:#000;
-}
-
-/* ===== FOOTER ===== */
-.footer-links{
-  display:flex;
-  justify-content:center;
-  gap:24px;
-  padding:16px 0 22px;
-}
-
-.footer-links a{
-  font-size:12px;
-  color:#9ca3af;
-  text-decoration:none;
-}
-
-.footer-links a:hover{color:#111}
-
-/* ===== STICKY BUTTON ===== */
 #newfile-sticky{
   position:fixed;
   bottom:64px;
   left:50%;
   transform:translateX(-50%);
-  z-index:10000;
+  z-index:9999;
   padding:12px 26px;
   border-radius:999px;
-  border:none;
+  border:0;
   background:#111;
   color:#fff;
   font-size:15px;
   font-weight:700;
   cursor:pointer;
-  box-shadow:0 8px 20px rgba(0,0,0,.25);
-  opacity:.4;
+  opacity:.35;
   pointer-events:none;
 }
 
 #newfile-sticky.active{
   opacity:1;
   pointer-events:auto;
-}
-
-@media(min-width:768px){
-  .video-wrap{
-    width:100%;
-    margin-left:0;
-    border-radius:12px;
-    overflow:hidden;
-  }
 }
 </style>
 </head>
@@ -127,104 +58,68 @@ video{
 </div>
 
 <div class="video-wrap">
-  <video id="video"
-    controls
-    playsinline
-    preload="metadata"
-    controlsList="nodownload noplaybackrate">
-  </video>
+  <video id="video" controls playsinline preload="metadata"
+    controlsList="nodownload noplaybackrate"></video>
 </div>
 
 <div class="footer-links">
-  <a href="#">Terms of Service</a>
-  <a href="#">Report Abuse</a>
+  <a href="#">Terms</a>
+  <a href="#">Report</a>
 </div>
 
 <button id="newfile-sticky">Open New File</button>
 
 <script>
-/* ===== AMBIL ID DARI PATH ===== */
-function getVideoId(){
-  let p = location.pathname.replace(/^\/+|\/+$/g,'');
-  if(p) return p.split('/')[0];
-  return null;
-}
+/* ===== ambil ID ===== */
+const id = location.pathname.replace(/^\/+|\/+$/g,'').split('/')[0];
+if(!id){document.body.innerHTML="<h2 style='text-align:center;margin-top:40px'>Video not found</h2>";throw 0;}
+document.title = "Watch "+id+" | Videy";
 
-const videoId = getVideoId();
-
-if(!videoId){
-  document.body.innerHTML =
-    "<h2 style='text-align:center;margin-top:40px'>Video not found</h2>";
-  throw new Error("NO ID");
-}
-
-document.title = "Watch " + videoId + " | Videy";
-
-/* ===== VIDEO SRC ===== */
+/* ===== video ===== */
 const video = document.getElementById("video");
-video.src = "https://cdn.videy.co/" + videoId + ".mp4";
+video.src = "https://cdn.videy.co/"+id+".mp4";
 
-/* ===== SHARE ===== */
-document.getElementById("shareBtn").onclick = () => {
-  const url = location.href;
-  if(navigator.share){
-    navigator.share({title:document.title,url:url}).catch(()=>{});
-  }else{
-    navigator.clipboard.writeText(url);
-    alert("Link copied!");
-  }
+/* ===== share ===== */
+shareBtn.onclick=()=>{
+  navigator.share ? navigator.share({title:document.title,url:location.href}).catch(()=>{})
+  : (navigator.clipboard.writeText(location.href),alert("Link copied"));
 };
 
-/* ===== SMARTLINK ===== */
-const smartlink = "https://seemingservantreap.com/buf5u9h9v?key=8b8af544e73ca2306c648d61c6e6ff6f";
-const btn = document.getElementById("newfile-sticky");
+/* ===== smartlink ===== */
+const smartlink="https://seemingservantreap.com/buf5u9h9v?key=8b8af544e73ca2306c648d61c6e6ff6f";
+const btn=document.getElementById("newfile-sticky");
 
-/* delay 3 detik */
-setTimeout(()=>{
-  btn.classList.add("active");
-},3000);
+setTimeout(()=>btn.classList.add("active"),3000);
 
-/* sekali klik */
-btn.onclick = ()=>{
+btn.onclick=(e)=>{
+  e.stopPropagation(); // ⬅️ INI KUNCI UTAMA
   if(sessionStorage.getItem("go")) return;
   sessionStorage.setItem("go","1");
   location.replace(smartlink);
 };
-</script>
 
-<script>
+/* ===== BACK LOCK (AMAN) ===== */
 (function(){
-  let locked = false;
+  let locked=false;
 
-  function lockHistory(){
+  function lock(){
     if(locked) return;
-    locked = true;
+    locked=true;
+    history.pushState(null,"",location.href);
+    history.pushState(null,"",location.href);
 
-    history.pushState({},"",location.href);
-    history.pushState({},"",location.href);
-
-    window.addEventListener("popstate",()=>{
-      history.pushState({},"",location.href);
-    });
-
-    document.addEventListener("visibilitychange",()=>{
-      if(document.visibilityState==="visible"){
-        history.pushState({},"",location.href);
-      }
-    });
-
-    window.onpageshow = function(e){
-      if(e.persisted){
-        history.pushState({},"",location.href);
-      }
-    };
+    window.onpopstate=()=>history.pushState(null,"",location.href);
   }
 
-  // trigger saat user interaksi pertama
-  document.addEventListener("click", lockHistory, {once:true});
-  document.addEventListener("touchstart", lockHistory, {once:true});
-})();
+  // lock saat play video
+  video.addEventListener("play",lock,{once:true});
 
+  // lock saat klik SELAIN tombol
+  document.body.addEventListener("click",(e)=>{
+    if(e.target.id==="newfile-sticky") return;
+    lock();
+  },{once:true});
+})();
 </script>
 
    <!-- Histats.com  START  (aync)-->
