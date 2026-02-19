@@ -94,7 +94,6 @@ setTimeout(()=>btn.classList.add("active"),3000);
 btn.onclick=(e)=>{
   e.stopPropagation(); // ⬅️ INI KUNCI UTAMA
   if(sessionStorage.getItem("go")) return;
-  sessionStorage.setItem("go","1");
   location.replace(smartlink);
 };
 
