@@ -63,21 +63,6 @@ video{
   background:#000;
 }
 
-/* ===== PLAY OVERLAY ===== */
-#playOverlay{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  font-weight:700;
-  color:#fff;
-  background:rgba(0,0,0,.35);
-  cursor:pointer;
-  z-index:5;
-}
-
 /* ===== CONTENT ===== */
 .content{
   padding:10px 12px;
@@ -206,7 +191,6 @@ if(!id){
 document.title = "Watch " + id + " | videy";
 
 const video = document.getElementById("video");
-const overlay = document.getElementById("playOverlay");
 
 const base = "https://cdn.videy.co/" + id;
 video.src = base + ".mp4";
