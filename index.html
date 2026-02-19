@@ -1,124 +1,165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<meta name="juicyads-site-verification" content="4b6274c671d36777079bd56765c3e142">
-<meta name="facebook-domain-verification" content="um9x59eajbwsjb75minwy9n332mkva">
-
-<link rel="icon" href="https://videy.co/favicon.ico">
+<meta charset="UTF-8">
 <title>Watch Video</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta name="juicyads-site-verification" content="4b6274c671d36777079bd56765c3e142">
+<link rel="icon" href="https://videy.co/favicon.ico">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;background:#fff;color:#111}
-
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #eee}
-.topbar span{font-size:18px;font-weight:700}
-
-.share-btn{padding:6px 14px;border-radius:999px;border:0;background:#f3f4f6;font-weight:600;cursor:pointer}
-
-.video-wrap{position:relative;width:100vw;margin-left:calc(-50vw + 50%);aspect-ratio:16/9;background:#000}
-video{width:100%;height:100%;object-fit:contain;background:#000}
-
-.footer-links{display:flex;justify-content:center;gap:24px;padding:16px 0 22px}
-.footer-links a{font-size:12px;color:#9ca3af;text-decoration:none}
-
-#newfile-sticky{
-  position:fixed;
-  bottom:64px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:9999;
-  padding:12px 26px;
-  border-radius:999px;
-  border:0;
-  background:#111;
-  color:#fff;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
-  opacity:.35;
-  pointer-events:none;
+body{
+  font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+  background:#fff;
+  color:#111;
 }
 
-#newfile-sticky.active{
-  opacity:1;
-  pointer-events:auto;
+/* TOP BAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 12px;
+  border-bottom:1px solid #eee;
+}
+.topbar span{font-size:18px;font-weight:700}
+
+/* SHARE */
+.share-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 14px;
+  border-radius:999px;
+  border:none;
+  background:#f3f4f6;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+}
+.share-btn:hover{background:#e5e7eb}
+.share-btn svg{width:18px;height:18px}
+
+/* VIDEO */
+.video-wrap{
+  width:100vw;
+  margin-left:calc(-50vw + 50%);
+  aspect-ratio:16/9;
+  background:#000;
+}
+video{
+  width:100%;
+  height:100%;
+  background:#000;
+  object-fit:contain;
+}
+
+/* CONTENT */
+.content{padding:10px 12px}
+
+/* BANNER */
+#ad-300x250{
+  width:300px;
+  height:250px;
+  margin:14px auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* FOOTER */
+.footer-links{
+  display:flex;
+  justify-content:center;
+  gap:24px;
+  padding:16px 0 22px;
+}
+.footer-links a{
+  font-size:12px;
+  color:#9ca3af;
+  text-decoration:none;
+}
+.footer-links a:hover{color:#111}
+
+@media(min-width:768px){
+  .video-wrap{
+    width:100%;
+    margin-left:0;
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .content{max-width:900px;margin:auto}
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div class="topbar">
   <span>Videy</span>
-  <button class="share-btn" id="shareBtn">Share video</button>
+  <button class="share-btn" id="shareBtn">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+      stroke="currentColor" stroke-width="2">
+      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+      <polyline points="16 6 12 2 8 6"/>
+      <line x1="12" y1="2" x2="12" y2="15"/>
+    </svg>
+    Share video
+  </button>
 </div>
 
+<!-- VIDEO -->
 <div class="video-wrap">
   <video id="video" controls playsinline preload="metadata"
     controlsList="nodownload noplaybackrate"></video>
 </div>
 
-<div class="footer-links">
-  <a href="#">Terms</a>
-  <a href="#">Report</a>
+<div class="content">
+
+  <!-- BANNER -->
+  <div id="ad-300x250">
+<!-- JuicyAds v3.0 -->
+<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+<ins id="1109294" data-width="300" data-height="250"></ins>
+<script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1109294});</script>
+<!--JuicyAds END-->
+  </div>
+
 </div>
 
-<button id="newfile-sticky">Open New File</button>
+<!-- FOOTER -->
+<div class="footer-links">
+  <a href="https://braceslinear.com/d40w8mx5c?key=e15240371508f21838848c29a618630a">Terms of Service</a>
+  <a href="https://braceslinear.com/vytbpinkth?key=c12d8e4adc20e53b3071804836fd4575">Report Abuse</a>
+</div>
 
 <script>
-/* ===== ambil ID ===== */
+/* AMBIL ID VIDEO */
 const id = location.pathname.replace(/^\/+|\/+$/g,'').split('/')[0];
-if(!id){document.body.innerHTML="<h2 style='text-align:center;margin-top:40px'>Video not found</h2>";throw 0;}
-document.title = "Watch "+id+" | Videy";
+if(!id){
+  document.body.innerHTML="<h2 style='text-align:center;margin-top:40px'>Video not found</h2>";
+  throw new Error("No video ID");
+}
 
-/* ===== video ===== */
+/* SET TITLE */
+document.title = "Watch " + id + " | Videy";
+
+/* LOAD VIDEO */
 const video = document.getElementById("video");
-video.src = "https://cdn.videy.co/"+id+".mp4";
+video.src = "https://cdn.videy.co/" + id + ".mp4";
 
-/* ===== share ===== */
-shareBtn.onclick=()=>{
-  navigator.share ? navigator.share({title:document.title,url:location.href}).catch(()=>{})
-  : (navigator.clipboard.writeText(location.href),alert("Link copied"));
-};
-
-/* ===== smartlink ===== */
-const smartlink="https://seemingservantreap.com/buf5u9h9v?key=8b8af544e73ca2306c648d61c6e6ff6f";
-const btn=document.getElementById("newfile-sticky");
-
-setTimeout(()=>btn.classList.add("active"),3000);
-
-btn.onclick=(e)=>{
-  e.stopPropagation(); // ⬅️ INI KUNCI UTAMA
-  if(sessionStorage.getItem("go")) return;
-  location.replace(smartlink);
-};
-
-/* ===== BACK LOCK (AMAN) ===== */
-(function(){
-  let locked=false;
-
-  function lock(){
-    if(locked) return;
-    locked=true;
-    history.pushState(null,"",location.href);
-    history.pushState(null,"",location.href);
-
-    window.onpopstate=()=>history.pushState(null,"",location.href);
+/* SHARE */
+document.getElementById("shareBtn").onclick = () => {
+  if (navigator.share) {
+    navigator.share({ title: document.title, url: location.href });
+  } else {
+    navigator.clipboard.writeText(location.href);
+    alert("Link copied");
   }
-
-  // lock saat play video
-  video.addEventListener("play",lock,{once:true});
-
-  // lock saat klik SELAIN tombol
-  document.body.addEventListener("click",(e)=>{
-    if(e.target.id==="newfile-sticky") return;
-    lock();
-  },{once:true});
-})();
+};
 </script>
 
    <!-- Histats.com  START  (aync)-->
@@ -133,6 +174,12 @@ hs.src = ('//s10.histats.com/js15_as.js');
 })();</script>
 <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4992245&101" alt="" border="0"></a></noscript>
 <!-- Histats.com  END  -->
+
+<header>
+<!-- JuicyAds PopUnders v3 Start -->
+<script type="text/javascript" src="https://js.juicyads.com/jp.php?c=44640333v2a4u4r2p28403a4a4&u=https%3A%2F%2Fwww.juicyads.rocks"></script>
+<!-- JuicyAds PopUnders v3 End -->
+</header>
 
 </body>
 </html>
